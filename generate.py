@@ -112,7 +112,7 @@ fw = open("./logs"+"/"+"data"+ts,"w")
 dataList = []
 
 for i in xrange(arg2):
-	string = randomDate("1/1/2010-1:30:00", "1/1/2014-4:50:60",random.random())+" "+pub_list[int(random.random()*10)%len(pub_list)]+" "+advertiser_list[int(random.random()*10)%len(advertiser_list)]+" "+ website_list[int(random.random()*10)%len(website_list)] + " " + geo_list[int(random.random()*10)%len(geo_list)] + " " +str(random.random()) + " " + str(int(random.random()*10000))
+	string = randomDate("1/1/2010-1:30:00", "1/1/2014-4:50:60",random.random())+" "+pub_list[int(random.random()*10)%len(pub_list)]+" "+advertiser_list[int(random.random()*10)%len(advertiser_list)]+" "+ website_list[int(random.random()*10)%len(website_list)] + " " + geo_list[int(random.random()*10)%len(geo_list)] + " " +str(round(random.random(),4)) + " " + str(int(random.random()*10000))
 	if (i+1)%1000 == 0 :
 		fw.close()
 		ts = time.time()
