@@ -1,15 +1,13 @@
-***runnig script to generate data***
+***runnig script to generate data*** <br/>
 
-**this will generate 1000 record log data, inside /logs hdfs directory**
+**this will generate 1000 record log data, inside /logs hdfs directory** <br/>
+  $python generate.py <br/>
 
-  $python generate.py
+**this will generate 10000 record log data, inside /logs hdfs directory** <br/>
+  $python generate.py test 10000 <br/>
 
-**this will generate 10000 record log data, inside /logs hdfs directory**
-
-  $python generate.py test 10000
-
-**this will generate 10000 record log data, inside /log_data hdfs directory**
-  $python generate.py test 10000 /log_data
+**this will generate 10000 record log data, inside /log_data hdfs directory** <br/>
+  $python generate.py test 10000 /log_data <br/>
 
 
 ***data formate timestamp, publisher, advertiser, website, country code, bid price and cookie id***
