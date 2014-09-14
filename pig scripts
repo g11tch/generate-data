@@ -1,0 +1,42 @@
+file1 = LOAD '/logs' USING PigStorage(' ') AS (timestamp:chararray, publisher:chararray, advertiser:chararray, website:chararray, country:chararray, bid:double, cookie:int);
+STORE file1 INTO '/logOut' ;
+
+
+--- note that we need to remove existing output directory to write into same directory name ----
+rmf /logOut ;
+
+--- to get more details of schema use describe keyword---
+DESCRIBE file1 ;
+
+--- script to get all record whose bid is less than 0.1 ---
+file1 = LOAD '/logs' USING PigStorage(' ') AS (timestamp:chararray, publisher:chararray, advertiser:chararray, website:chararray, country:chararray, bid:double, cookie:int);
+filter_res = FILTER file1 BY bid < 0.1 ;
+STORE filter_res INTO '/logOut' ;
+
+--- note that we need to remove existing output directory to write into same directory name ----
+rmf /logOut ;
+
+--- script to get count of number of times publisher published same advertisment ---
+file1 = LOAD '/logs' USING PigStorage(' ') AS (timestamp:chararray, publisher:chararray, advertiser:chararray, website:chararray, country:chararray, bid:double, cookie:int);
+group_by = GROUP file1 BY(publisher,advertiser);
+count_result = FOREACH group_by GENERATE group.publisher as publisher, group.advertiser as advertiser, COUNT(file1); 
+STORE count_result INTO '/logOut' ;
+
+--- note that we need to remove existing output directory to write into same directory name ----
+rmf /logOut ;
+
+--- script to get the list of top 5 bids, not we need to perform group by on bid because some bid may be same and we dont want to loss this bid info ---
+file1 = LOAD '/logs' USING PigStorage(' ') AS (timestamp:chararray, publisher:chararray, advertiser:chararray, website:chararray, country:chararray, bid:double, cookie:int);
+group_res = GROUP file1 BY bid ;
+group_res = FOREACH group_res GENERATE group AS bid, file1 ;
+order_dec = ORDER group_res BY bid DESC;
+order_dec_top5 = LIMIT order_dec 5 ;
+STORE order_dec_top5 INTO '/logOut' ;
+
+
+--- split the data based on condtion eq let us take data which as low from 0 to 0.1 , mid from 0.1 to 0.5 and up from 0.5 to 0.1 ---
+file1 = LOAD '/logs' USING PigStorage(' ') AS (timestamp:chararray, publisher:chararray, advertiser:chararray, website:chararray, country:chararray, bid:double, cookie:int);
+SPLIT file1 INTO low IF bid<0.1, mid IF(bid < 0.5 and bid >= 0.1),up IF bid >= 0.5;
+STORE low INTO '/logLow' ;
+STORE mid INTO '/logMid' ;
+STORE up INTO '/logUp' ;
