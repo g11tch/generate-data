@@ -1,19 +1,19 @@
-*** runnig script to generate data ***
+***runnig script to generate data***
 
-** this will generate 1000 record log data, inside /logs hdfs directory **
+**this will generate 1000 record log data, inside /logs hdfs directory**
 
-* $python generate.py *
+$python generate.py
 
-** this will generate 10000 record log data, inside /logs hdfs directory **
+**this will generate 10000 record log data, inside /logs hdfs directory**
 
-* $python generate.py test 10000 *
+$python generate.py test 10000
 
-** this will generate 10000 record log data, inside /log_data hdfs directory **
+**this will generate 10000 record log data, inside /log_data hdfs directory**
 
-* $python generate.py test 10000 /log_data *
+$python generate.py test 10000 /log_data
 
 
-*** data formate timestamp, publisher, advertiser, website, country code, bid price and cookie id***
+***data formate timestamp, publisher, advertiser, website, country code, bid price and cookie id***
 
 03/13/2013-02:01:11 pub3 adv8 www.google.com US 0.298689199203 480
 
