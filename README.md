@@ -1,4 +1,4 @@
-****runnig script to generate data****
+***runnig script to generate data***
 
 **this will generate 1000 record log data, inside /logs hdfs directory**
 
