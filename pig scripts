@@ -41,9 +41,3 @@ STORE low INTO '/logLow' ;
 STORE mid INTO '/logMid' ;
 STORE up INTO '/logUp' ;
 
-
-REGISTER /home/madan/Downloads/hyperloglog.jar;
-REGISTER /home/madan/Downloads/algebird-core_2.10-0.7.0.jar;
-A = LOAD '/_kafka' USING PigStorage(' ') AS (ts,pub,adv,web,geo,bid,cookie);
-B = FOREACH A GENERATE pub,ts,bid;
-STORE B INTO '/tmp/processed';
